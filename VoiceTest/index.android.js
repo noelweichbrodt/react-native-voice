@@ -75,7 +75,7 @@ class VoiceTest extends Component {
       results: [],
       partialResults: [],
     });
-    const error = Voice.start('en');
+    const error = Voice.start('en-US');
     if (error) {
       ToastAndroid.show(error, ToastAndroid.SHORT);
     }

@@ -38,7 +38,9 @@
     
     NSError* audioSessionError = nil;
     self.audioSession = [AVAudioSession sharedInstance];
-    [self.audioSession setCategory:AVAudioSessionCategoryRecord error:&audioSessionError];
+    [self.audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
+                       withOptions:AVAudioSessionCategoryOptions.MixWithOthers
+                       error:&audioSessionError];
 
 
     if (audioSessionError != nil) {
@@ -151,7 +153,9 @@
 - (void) teardown {
     [self.recognitionTask cancel];
     self.recognitionTask = nil;
-    [self.audioSession setCategory:AVAudioSessionCategoryAmbient error:nil];
+    [self.audioSession
+     setMode:AVAudioSessionModeDefault
+     error:nil];
     self.audioSession = nil;
 
     
